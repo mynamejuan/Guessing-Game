@@ -1,0 +1,72 @@
+Name:		Juan M Renteria Davila
+	Date:		03/14/2013
+	Class:	1213-002 Professor Sara Scott
+	Lab:		1213L-L12 Nitish Dubey
+	Program:	Guessing Game
+	Purpose:	User guesses a number from 2-12 and two dice are randomly
+				rolled with three chances at matching the dice roll's.
+*/
+
+
+import javax.swing.JOptionPane;	//Needed for javax object
+
+public class Guess
+{
+	public static void main(String[] args)
+	{
+		String userGuess;	//Hold the user pick from 2-12 as String variable
+		int guessConvert;	//Converts the string into an integer
+		char again;			//Hold the first letter of yes or no, to decide play repeat
+		
+		//Displays the games title
+		JOptionPane.showMessageDialog(null, "Welcome to muchoDice");
+		
+	//do loop for game repeat at the end	
+	do{
+	
+		//Get the user's guess at the dice roll
+		//Also makes sure that the guess is between 2-12 using a do-while loop
+		do{
+			userGuess = JOptionPane.showInputDialog("Enter a guess between 2 and 12...");
+			guessConvert = Integer.parseInt(userGuess);	//Used to convert string to int
+			}while(guessConvert<2 || guessConvert>12);	//Loops again if not lower than 2 and greater than 12
+		
+		//Creates object passing in the guessConvert into Roll constructor
+		Roll gameRoll = new Roll(guessConvert);
+		
+		//For loop for 3 tries or rolls
+		for(int counter =1; counter<=3; counter++)
+		{
+			//Displays the roll results
+			JOptionPane.showMessageDialog(null,"Roll " + counter + " results:  " + "dice 1= " + gameRoll.getDice1() 
+																				+ "    ***    "  + "dice 2= " + gameRoll.getDice2());
+			
+			//Tells the user in what roll they matched their guess
+			if((gameRoll.getDice1()+gameRoll.getDice2()) == guessConvert)
+			{
+				JOptionPane.showMessageDialog(null, "Congrats, you won on your " + counter + " attempt");
+				break;	//Will break out of game if user wins
+			}
+			
+			//Displays to the user that they have lost the game and ran out of rolls
+			else if(counter == 3 && (gameRoll.getDice1()+gameRoll.getDice2())!= guessConvert)
+			{
+				JOptionPane.showMessageDialog(null, "You have run out of rolls, game over looser");
+			}
+		}
+		
+		//Asks the user if they want to continue playing
+		String playAgain;
+		playAgain = JOptionPane.showInputDialog("Do you want to play again? ");
+		again = playAgain.charAt(0);
+		
+	}while(again == 'Y' || again == 'y');	//loop to play again or quit
+	
+		//Displays thank you message if player does not want to continue
+		if(again == 'N' || again == 'n')
+		{
+			JOptionPane.showMessageDialog(null, "Thanks for playing!");
+		}
+		
+}
+}
