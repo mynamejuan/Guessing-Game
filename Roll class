@@ -1,0 +1,49 @@
+
+	Name:		Juan M Renteria Davila
+	Date:		03/14/2013
+	Class:	1213-002 Professor Sara Scott
+	Lab:		1213L-L12 Nitish Dubey
+	Program:	Guessing Game
+	Purpose:	User guesses a number from 2-12 and two dice are randomly
+				rolled with three chances at matching the dice roll's.
+*/
+
+
+import java.util.Random;	//Required to generate random numbers
+
+public class Roll
+{
+	private int guessConvert;	//User guess at roll
+	
+	//Declared an in variable to user guess
+	public Roll(int roll)
+	{
+		guessConvert = roll;
+	}
+	
+	//Sets the user guess as the variable roll
+	public void setRoll(int roll)
+	{
+		guessConvert = roll;
+	}
+	
+	//Dice one roll
+	public int getDice1()
+	{
+		int dice1;	//Holds the result of the dice one roll
+		Random rollOne = new Random();	//Generates a random number
+		
+		dice1 = rollOne.nextInt(5)+1;	//Will generate a number from 1-6 inclusive
+		
+		return dice1;	//Returns dice 1 results
+	}
+	
+	//Dice two roll
+	public int getDice2()
+	{
+		int dice2;	//Holds the result of the dice two roll
+		Random rollTwo = new Random();	//Generates a random number
+		
+		dice2 = rollTwo.nextInt(5)+1;	//Will generate a number from 1-6 inclusive
+		
+	
